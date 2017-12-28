@@ -286,7 +286,8 @@ export default class RichTextEditor extends Component {
     }
   }
 
-  _onChange(editorState: EditorState) {
+  _onChange(editorState: EditorState, files) {
+    console.log('files', files);
     let {onChange, value} = this.props;
     if (onChange == null) {
       return;
@@ -294,7 +295,7 @@ export default class RichTextEditor extends Component {
     let newValue = value.setEditorState(editorState);
     let newEditorState = newValue.getEditorState();
     this._handleInlineImageSelection(newEditorState);
-    onChange(newValue);
+    onChange(newValue, files);
   }
 
   _handleInlineImageSelection(editorState: EditorState) {

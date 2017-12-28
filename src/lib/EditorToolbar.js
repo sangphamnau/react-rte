@@ -52,6 +52,7 @@ export default class EditorToolbar extends Component {
       showLinkInput: false,
       showImageInput: false,
       customControlState: {},
+      files: [],
     };
   }
 
@@ -311,7 +312,7 @@ export default class EditorToolbar extends Component {
     this.setState({showImageInput: !isShowing});
   }
 
-  _setImage(src: string) {
+  _setImage(src: string, file: ?Object) {
     let {editorState} = this.props;
     let contentState = editorState.getCurrentContent();
     let selection = editorState.getSelection();
@@ -319,8 +320,12 @@ export default class EditorToolbar extends Component {
     let entityKey = contentState.getLastCreatedEntityKey();
     let newContentState = Modifier.insertText(contentState, selection, ' ', null, entityKey);
     this.setState({showImageInput: false});
+    if (file) {
+      this.state.files.push({file, url: src});
+    }
     this.props.onChange(
-      EditorState.push(editorState, newContentState)
+      EditorState.push(editorState, newContentState),
+      this.state.files,
     );
     this._focusEditor();
   }
