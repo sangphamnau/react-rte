@@ -2,7 +2,7 @@
   "name": "react-rte",
   "version": "0.15.0",
   "description": "React Rich Text Editor",
-  "main": "dist/react-rte.js",
+  "main": "lib/RichTextEditor.js",
   "files": [
     "lib",
     "dist"
