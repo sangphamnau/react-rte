@@ -287,7 +287,6 @@ export default class RichTextEditor extends Component {
   }
 
   _onChange(editorState: EditorState, files) {
-    console.log('files', files);
     let {onChange, value} = this.props;
     if (onChange == null) {
       return;
