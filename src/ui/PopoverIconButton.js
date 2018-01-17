@@ -38,13 +38,15 @@ export default class PopoverIconButton extends Component {
 
   onChange = (e) => {
     const { files } = e.target;
-    const reader = new FileReader();
-
-    reader.onload = (readerEvent) => {
-      const dataUrl = readerEvent.target.result;
-      this.props.onSubmit(dataUrl, files[0]);
-    };
-    reader.readAsDataURL(files[0]);
+    if (files[0].type.includes('image')) {
+      const reader = new FileReader();
+  
+      reader.onload = (readerEvent) => {
+        const dataUrl = readerEvent.target.result;
+        this.props.onSubmit(dataUrl, files[0]);
+      };
+      reader.readAsDataURL(files[0]);
+    }
   }
 
   render() {
